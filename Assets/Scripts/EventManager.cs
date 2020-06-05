@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using System.Linq;
 
 public class EventManager : MonoBehaviour
 {
     private Dictionary<string, UnityEvent<bool>> eventDictionaryBool;
+    private Dictionary<string, UnityEvent<double>> eventDictionaryDouble;
     private Dictionary<string, UnityEvent> eventDictionaryNull;
 
 
@@ -37,6 +39,10 @@ public class EventManager : MonoBehaviour
         if (eventDictionaryBool == null)
         {
             eventDictionaryBool = new Dictionary<string, UnityEvent<bool>>();
+        }
+        if (eventDictionaryDouble == null)
+        {
+            eventDictionaryDouble = new Dictionary<string, UnityEvent<double>>();
         }
         if (eventDictionaryNull == null)
         {
@@ -85,6 +91,47 @@ public class EventManager : MonoBehaviour
             thisEvent.Invoke(toggle);
         }
     }
+    #endregion  
+    #region EventDouble
+    [System.Serializable]
+    public class DoubleEvent : UnityEvent<double>
+    {
+
+    }
+
+    public static void StartListening(string eventName, UnityAction<double> listener)
+    {
+        UnityEvent<double> thisEvent = null;
+        if (instance.eventDictionaryDouble.TryGetValue(eventName, out thisEvent))
+        {
+            thisEvent.AddListener(listener);
+        }
+        else
+        {
+            thisEvent = new DoubleEvent();
+            thisEvent.AddListener(listener);
+            instance.eventDictionaryDouble.Add(eventName, thisEvent);
+        }
+    }
+
+    public static void StopListening(string eventName, UnityAction<double> listener)
+    {
+        if (eventManager == null) return;
+        UnityEvent<double> thisEvent = null;
+        if (instance.eventDictionaryDouble.TryGetValue(eventName, out thisEvent))
+        {
+            thisEvent.RemoveListener(listener);
+        }
+    }
+
+    public static void TriggerEvent(string eventName, double toggle)
+    {
+        UnityEvent<double> thisEvent = null;
+        if (instance.eventDictionaryDouble.TryGetValue(eventName, out thisEvent))
+        {
+            thisEvent.Invoke(toggle);
+        }
+    }
     #endregion
 
     #region EventNone
@@ -120,6 +167,7 @@ public class EventManager : MonoBehaviour
         {
             thisEvent.Invoke();
         }
+ 
     }
     #endregion
 }

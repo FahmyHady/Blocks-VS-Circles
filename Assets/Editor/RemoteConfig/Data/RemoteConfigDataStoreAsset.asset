@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
+  m_Name: RemoteConfigDataStoreAsset
+  m_EditorClassIdentifier: 
+  configId: 243981aa-37ff-4f0d-89fe-974429aa5a5e
+  currentEnvironment: Normal Gameplay
+  currentEnvironmentId: 42c96ffb-c11f-4553-a538-a9ef49573d22
+  currentEnvironmentIsDefault: 1
+  addedRulesIDs: []
+  updatedRulesIDs: []
+  deletedRulesIDs: []
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"8c1f5789-1553-4eba-9da5-0576f1486075\"\r\n
+    \   },\r\n    \"rs\": {\r\n      \"key\": \"Y - upgradeCost\",\r\n      \"type\":
+    \"float\",\r\n      \"value\": 1.08\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
+    {\r\n      \"entityId\": \"f37b8be9-76c9-4689-b263-ef576874f11d\"\r\n    },\r\n
+    \   \"rs\": {\r\n      \"key\": \"X - upgradeCost\",\r\n      \"type\": \"float\",\r\n
+    \     \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"3f9d51c7-f021-430b-a8d5-45047f51506d\"\r\n    },\r\n    \"rs\": {\r\n      \"key\":
+    \"Y - goldPerTap\",\r\n      \"type\": \"float\",\r\n      \"value\": 2.1\r\n
+    \   }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"82f4a0c0-f0ed-4b56-b888-50927cdb130d\"\r\n
+    \   },\r\n    \"rs\": {\r\n      \"key\": \"X - goldPerTap\",\r\n      \"type\":
+    \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  }\r\n]"
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"8c1f5789-1553-4eba-9da5-0576f1486075\"\r\n
+    \   },\r\n    \"rs\": {\r\n      \"key\": \"Y - upgradeCost\",\r\n      \"type\":
+    \"float\",\r\n      \"value\": 1.08\r\n    }\r\n  },\r\n  {\r\n    \"metadata\":
+    {\r\n      \"entityId\": \"f37b8be9-76c9-4689-b263-ef576874f11d\"\r\n    },\r\n
+    \   \"rs\": {\r\n      \"key\": \"X - upgradeCost\",\r\n      \"type\": \"float\",\r\n
+    \     \"value\": 5.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"3f9d51c7-f021-430b-a8d5-45047f51506d\"\r\n    },\r\n    \"rs\": {\r\n      \"key\":
+    \"Y - goldPerTap\",\r\n      \"type\": \"float\",\r\n      \"value\": 2.1\r\n
+    \   }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"82f4a0c0-f0ed-4b56-b888-50927cdb130d\"\r\n
+    \   },\r\n    \"rs\": {\r\n      \"key\": \"X - goldPerTap\",\r\n      \"type\":
+    \"float\",\r\n      \"value\": 5.0\r\n    }\r\n  }\r\n]"
+  _environments: "[\r\n  {\r\n    \"projectId\": \"04adcf84-c91f-4cb4-ba6a-5c4b8f650eeb\",\r\n
+    \   \"name\": \"Normal Gameplay\",\r\n    \"id\": \"42c96ffb-c11f-4553-a538-a9ef49573d22\",\r\n
+    \   \"createdAt\": \"2020-06-05T11:56:58Z\",\r\n    \"updatedAt\": \"2020-06-05T11:57:11Z\",\r\n
+    \   \"isDefault\": true\r\n  }\r\n]"
+  _rulesList: '[]'
+  _lastCachedRulesList: '[]'
