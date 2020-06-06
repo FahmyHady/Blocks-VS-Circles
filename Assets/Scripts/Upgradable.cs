@@ -2,13 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class Upgradable : MonoBehaviour
 {
+    public Text myPriceText;
     [HideInInspector] public int currentLevel;
-    protected double upgradeCost;
-    protected double goldPerTap;
+    public double upgradeCost;
+    public double goldPerTap;
     public void OnEnable()
     {
         EventManager.StartListening("Data Loaded", CalculateValues);
@@ -18,10 +19,12 @@ public class Upgradable : MonoBehaviour
     {
         EventManager.StopListening("Data Loaded", CalculateValues);
     }
-    void CalculateValues()
+    public void CalculateValues()
     {
         upgradeCost = UpgradeManager.CalculateUpgradeCost(currentLevel);
         goldPerTap = UpgradeManager.CalculateGoldPerTap(currentLevel);
+        UpdatePriceUI(upgradeCost);
+
     }
     public void Upgrade()
     {
@@ -30,10 +33,15 @@ public class Upgradable : MonoBehaviour
             PlayerDataManager.AddVerticies(-upgradeCost);
             currentLevel++;
             CalculateValues();
+            UpdatePriceUI(upgradeCost);
         }
         else
         {
             //play sound
         }
+    }
+    public void UpdatePriceUI(double price)
+    {
+        myPriceText.text = AbbrevationUtility.AbbreviateNumber(price);
     }
 }

@@ -6,7 +6,10 @@ public class SaveLoadManager : MonoBehaviour
     static List<Upgradable> upgradables = new List<Upgradable>();
     public static void AddAnUpgradable(Upgradable item)
     {
-        upgradables.Add(item);
+        if (!upgradables.Contains(item))
+        {
+            upgradables.Add(item);
+        }
     }
     private void OnEnable()
     {
@@ -16,6 +19,7 @@ public class SaveLoadManager : MonoBehaviour
     {
         EventManager.StopListening("Gameplay Scene Loaded", Load);
     }
+
     private void OnApplicationFocus(bool focus)
     {
         if (!focus)
@@ -44,13 +48,7 @@ public class SaveLoadManager : MonoBehaviour
             {
                 upgradables[i].currentLevel = PlayerPrefs.GetInt("Upgradable" + i, 0);
             }
-            for (int i = 0; i < upgradables.Count; i++)
-            {
-                if (upgradables[i].currentLevel == 0)
-                {
-                    upgradables[i].gameObject.SetActive(false);
-                }
-            }
+    
         }
         EventManager.TriggerEvent("Data Loaded");
     }

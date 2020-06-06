@@ -7,20 +7,25 @@ public class UIManager : MonoBehaviour
     public Animator transitionPanelAnimator;
     public Text currentVerticiesCount;
     public Button upgradeTapperButton;
+    public Text upgradeTapperCostText;
+    public Text buyACirlceCostText;
     private void OnEnable()
     {
         EventManager.StartListening("Gameplay Scene Loaded", GameSceneLoadedProcedure);
         EventManager.StartListening("Verticies Updated", UpdateVerticiesCount);
+        EventManager.StartListening("Circle Cost Updated", UpdateCircleCost);
     }
     private void OnDisable()
     {
         EventManager.StopListening("Gameplay Scene Loaded", GameSceneLoadedProcedure);
         EventManager.StopListening("Verticies Updated", UpdateVerticiesCount);
-
+        EventManager.StopListening("Circle Cost Updated", UpdateCircleCost);
     }
     void GameSceneLoadedProcedure()
     {
-        upgradeTapperButton.onClick.AddListener(() => FindObjectOfType<Tapper>().Upgrade());
+        Tapper theTapper = FindObjectOfType<Tapper>();
+        theTapper.myPriceText = upgradeTapperCostText;
+        upgradeTapperButton.onClick.AddListener(() => theTapper.Upgrade());
         RemoveTransitionPanel();
     }
     void RemoveTransitionPanel()
@@ -37,5 +42,9 @@ public class UIManager : MonoBehaviour
     void UpdateVerticiesCount(double currentCount)
     {
         currentVerticiesCount.text = AbbrevationUtility.AbbreviateNumber(currentCount);
+    }
+    void UpdateCircleCost(double currentCost)
+    {
+        buyACirlceCostText.text = AbbrevationUtility.AbbreviateNumber(currentCost);
     }
 }
