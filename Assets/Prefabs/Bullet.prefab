@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myWorth: 0
-  bulletSpeed: 80
+  bulletSpeed: 100
 --- !u!96 &1577666337
 TrailRenderer:
   serializedVersion: 2
@@ -138,7 +138,7 @@ TrailRenderer:
   m_Time: 0.4
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.05
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -207,7 +207,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.053333335
+  m_Radius: 0.035555556
 --- !u!50 &1577666335
 Rigidbody2D:
   serializedVersion: 4

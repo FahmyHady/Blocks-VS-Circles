@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public Button upgradeTapperButton;
     public Text upgradeTapperCostText;
     public Text buyACirlceCostText;
+    public Button buyACirlceButton;
     public Text idleVerticiesCount;
     public Text idleTimeAway;
     private void OnEnable()
@@ -19,6 +20,7 @@ public class UIManager : MonoBehaviour
         EventManager.StartListening("Circle Cost Updated", UpdateCircleCost);
         EventManager.StartListening("Idle Gain Verticies", UpdateIdleVerticies);
         EventManager.StartListening("Idle Gain Time", UpdateIdleTime);
+        EventManager.StartListening("Max Circles Bought", NoMoreCircles);
     }
     private void OnDisable()
     {
@@ -27,6 +29,15 @@ public class UIManager : MonoBehaviour
         EventManager.StopListening("Circle Cost Updated", UpdateCircleCost);
         EventManager.StopListening("Idle Gain Verticies", UpdateIdleVerticies);
         EventManager.StopListening("Idle Gain Time", UpdateIdleTime);
+        EventManager.StopListening("Max Circles Bought", NoMoreCircles);
+
+    }
+
+    private void NoMoreCircles()
+    {
+        buyACirlceCostText.text = "Max Circles Bought";
+        buyACirlceButton.interactable = false;
+        buyACirlceButton.image.color = Color.gray;
     }
 
     private void UpdateIdleTime(string arg0)

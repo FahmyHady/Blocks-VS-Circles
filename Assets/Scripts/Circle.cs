@@ -5,6 +5,7 @@ public class Circle : Upgradable, IPointerClickHandler
 {
     static Cube theCube;
     [SerializeField] GameObject myCircle;
+    [SerializeField] GameObject myNozzle;
     [SerializeField] GameObject myUpgradeButton;
     [SerializeField] Collider2D myCollider;
     Animator myAnimator;
@@ -26,8 +27,8 @@ public class Circle : Upgradable, IPointerClickHandler
     void ShootCube()
     {
         Bullet bulletToFire = BulletPoolManager.PullABullet();
-        bulletToFire.transform.position = myCircle.transform.position;
-        bulletToFire.transform.rotation = myCircle.transform.rotation;
+        bulletToFire.transform.position = myNozzle.transform.position;
+        bulletToFire.transform.rotation = myNozzle.transform.rotation;
         bulletToFire.myWorth = goldPerTap;
         bulletToFire.gameObject.SetActive(true);
     }
@@ -57,7 +58,7 @@ public class Circle : Upgradable, IPointerClickHandler
     {
         t = 0;
         currentLocation = transform.position;
-        randomLocation = originalLocation + Random.insideUnitCircle * 0.5f;
+        randomLocation = originalLocation + Random.insideUnitCircle*0.8f;
         wanderTime = Random.Range(2, 5);
     }
     void Wander()

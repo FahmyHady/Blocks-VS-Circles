@@ -11,12 +11,10 @@ public class ItemPurchaseManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.StartListening("Data Loaded", PopulateCirclesList);
-        //EventManager.StartListening("Data Loaded", IntializeAvailableCircles);
     }
     private void OnDisable()
     {
         EventManager.StopListening("Data Loaded", PopulateCirclesList);
-        // EventManager.StopListening("Data Loaded", IntializeAvailableCircles);
     }
 
     private void PopulateCirclesList()
@@ -36,13 +34,10 @@ public class ItemPurchaseManager : MonoBehaviour
                 i--;
             }
         }
+        CheckIfThereAreMoreCirclesToBuy();
     }
 
-    //void IntializeAvailableCircles()
-    //{
-    // .RemoveRange(0, numberOfCirclesBought);
 
-    //}
     public void BuyCircle()
     {
         if (PlayerDataManager.GetVerticies() >= currentCircleCost)
@@ -56,7 +51,6 @@ public class ItemPurchaseManager : MonoBehaviour
             //play sound
         }
 
-        //numberOfCirclesBought++;
     }
     void SuccessfulCirclePurchase()
     {
@@ -66,6 +60,14 @@ public class ItemPurchaseManager : MonoBehaviour
         circleBought.CalculateValues();
         circleBought.gameObject.SetActive(true);
         circleBought.Appear();
+        CheckIfThereAreMoreCirclesToBuy();
+    }
+    void CheckIfThereAreMoreCirclesToBuy()
+    {
+        if (availableCirclesToBuy.Count==0)
+        {
+            EventManager.TriggerEvent("Max Circles Bought");
+        }
     }
     void UpdateCirclePrice()
     {

@@ -20,7 +20,7 @@ public class IdleGainManager : MonoBehaviour
         TimeSpan timeSinceLastSession = DateTimeManager.INSTANCE.GetElapsedTime();
         gainSinceLastSession = timeSinceLastSession.TotalSeconds * totalGainPerSecond;
         EventManager.TriggerEvent("Idle Gain Verticies", AbbrevationUtility.AbbreviateNumber(gainSinceLastSession));
-        EventManager.TriggerEvent("Idle Gain Time", timeSinceLastSession.Days + " Days  " + timeSinceLastSession.Hours + " Hours  " + timeSinceLastSession.Minutes + " Minutes");
+        EventManager.TriggerEvent("Idle Gain Time", timeSinceLastSession.Days + " Days " + timeSinceLastSession.Hours + " Hours " + timeSinceLastSession.Minutes + " Minutes");
     }
     public void CollectIdleVerticies()
     {

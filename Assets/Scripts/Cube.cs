@@ -6,14 +6,14 @@ using UnityEngine.EventSystems;
 public class Cube : MonoBehaviour, IPointerClickHandler
 {
     ParticleSpawner myExplosionSpawner;
-    ParticleSystem tappedEffect;
+    [SerializeField] ParticleSystem tappedEffect;
     private void Awake()
     {
         myExplosionSpawner = GetComponent<ParticleSpawner>();
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        //Play Clicked Effect
+        tappedEffect.Emit(1);
         EventManager.TriggerEvent("Tapped");
     }
 
