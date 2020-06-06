@@ -5,9 +5,12 @@ using UnityEngine.EventSystems;
 
 public class Cube : MonoBehaviour, IPointerClickHandler
 {
-    ParticleSystem bulletHitEffect;
+    ParticleSpawner myExplosionSpawner;
     ParticleSystem tappedEffect;
-    ParticleSystem.EmitParams emitBulletHitParams;
+    private void Awake()
+    {
+        myExplosionSpawner = GetComponent<ParticleSpawner>();
+    }
     public void OnPointerClick(PointerEventData eventData)
     {
         //Play Clicked Effect
@@ -16,6 +19,6 @@ public class Cube : MonoBehaviour, IPointerClickHandler
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Play Particle Effect At Collision Point
+        myExplosionSpawner.SpawnExplosion(collision.GetContact(0).point);
     }
 }

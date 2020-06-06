@@ -297,6 +297,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myPriceText: {fileID: 6653864269796692523}
   currentLevel: 0
+  upgradeCost: 0
+  goldPerTap: 0
 --- !u!1 &6653864270530621491
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +310,7 @@ GameObject:
   - component: {fileID: 6653864270530621500}
   - component: {fileID: 6653864270530621503}
   - component: {fileID: 6653864270530621502}
-  - component: {fileID: 6653864270530621501}
+  - component: {fileID: 4159806533755962191}
   m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
@@ -379,7 +381,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 200
---- !u!114 &6653864270530621501
+--- !u!114 &4159806533755962191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -395,4 +397,4 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1024

@@ -7,6 +7,7 @@ public class EventManager : MonoBehaviour
 {
     private Dictionary<string, UnityEvent<bool>> eventDictionaryBool;
     private Dictionary<string, UnityEvent<double>> eventDictionaryDouble;
+    private Dictionary<string, UnityEvent<string>> eventDictionaryString;
     private Dictionary<string, UnityEvent> eventDictionaryNull;
 
 
@@ -43,6 +44,10 @@ public class EventManager : MonoBehaviour
         if (eventDictionaryDouble == null)
         {
             eventDictionaryDouble = new Dictionary<string, UnityEvent<double>>();
+        }   
+        if (eventDictionaryString == null)
+        {
+            eventDictionaryString = new Dictionary<string, UnityEvent<string>>();
         }
         if (eventDictionaryNull == null)
         {
@@ -128,6 +133,47 @@ public class EventManager : MonoBehaviour
     {
         UnityEvent<double> thisEvent = null;
         if (instance.eventDictionaryDouble.TryGetValue(eventName, out thisEvent))
+        {
+            thisEvent.Invoke(toggle);
+        }
+    }
+    #endregion  
+    #region EventString
+    [System.Serializable]
+    public class StringEvent : UnityEvent<string>
+    {
+
+    }
+
+    public static void StartListening(string eventName, UnityAction<string> listener)
+    {
+        UnityEvent<string> thisEvent = null;
+        if (instance.eventDictionaryString.TryGetValue(eventName, out thisEvent))
+        {
+            thisEvent.AddListener(listener);
+        }
+        else
+        {
+            thisEvent = new StringEvent();
+            thisEvent.AddListener(listener);
+            instance.eventDictionaryString.Add(eventName, thisEvent);
+        }
+    }
+
+    public static void StopListening(string eventName, UnityAction<string> listener)
+    {
+        if (eventManager == null) return;
+        UnityEvent<string> thisEvent = null;
+        if (instance.eventDictionaryString.TryGetValue(eventName, out thisEvent))
+        {
+            thisEvent.RemoveListener(listener);
+        }
+    }
+
+    public static void TriggerEvent(string eventName, string toggle)
+    {
+        UnityEvent<string> thisEvent = null;
+        if (instance.eventDictionaryString.TryGetValue(eventName, out thisEvent))
         {
             thisEvent.Invoke(toggle);
         }

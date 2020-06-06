@@ -35,6 +35,7 @@ public class SaveLoadManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("Upgradable" + i, upgradables[i].currentLevel); //first upgradable is always the tapper
         }
+        DateTimeManager.INSTANCE.SaveTheDateNow();
         //Save Current Verticies and if applicable current world
     }
     void Load()
@@ -47,9 +48,10 @@ public class SaveLoadManager : MonoBehaviour
             for (int i = 0; i < upgradables.Count; i++)
             {
                 upgradables[i].currentLevel = PlayerPrefs.GetInt("Upgradable" + i, 0);
+                upgradables[i].CalculateValues();
             }
-    
         }
+        IdleGainManager.CalculateIdleGainPerSecond(upgradables);
         EventManager.TriggerEvent("Data Loaded");
     }
 }

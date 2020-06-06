@@ -48,7 +48,7 @@ public static class AbbrevationUtility
             if (number >= pair.Key)
             {
                 float roundedNumber = (float)(number / pair.Key);
-                return roundedNumber.ToString("F2") + pair.Value;
+                return roundedNumber.ToString("#.##") + pair.Value;
             }
         }
         return number.ToString();

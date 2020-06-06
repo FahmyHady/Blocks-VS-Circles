@@ -33,6 +33,7 @@ public class ItemPurchaseManager : MonoBehaviour
                 UpdateCirclePrice();
                 availableCirclesToBuy[i].Appear();
                 availableCirclesToBuy.Remove(availableCirclesToBuy[i]);
+                i--;
             }
         }
     }
@@ -64,6 +65,7 @@ public class ItemPurchaseManager : MonoBehaviour
         circleBought.currentLevel = 1;
         circleBought.CalculateValues();
         circleBought.gameObject.SetActive(true);
+        circleBought.Appear();
     }
     void UpdateCirclePrice()
     {

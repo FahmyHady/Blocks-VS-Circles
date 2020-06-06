@@ -12,12 +12,12 @@ public class Upgradable : MonoBehaviour
     public double goldPerTap;
     public void OnEnable()
     {
-        EventManager.StartListening("Data Loaded", CalculateValues);
+       // EventManager.StartListening("Data Loaded", CalculateValues);
         SaveLoadManager.AddAnUpgradable(this);
     }
     public void OnDisable()
     {
-        EventManager.StopListening("Data Loaded", CalculateValues);
+      //  EventManager.StopListening("Data Loaded", CalculateValues);
     }
     public void CalculateValues()
     {
