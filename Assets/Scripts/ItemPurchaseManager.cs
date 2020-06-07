@@ -26,7 +26,7 @@ public class ItemPurchaseManager : MonoBehaviour
 
     private void PopulateCirclesList()
     {
-        currentCircleCost = Mathf.Pow(10, 1 + PlayerDataManager.prestigeLevel); //Intialize circle cost
+        currentCircleCost = Mathf.Pow(10, 2 + PlayerDataManager.prestigeLevel); //Intialize circle cost
         if (PlayerDataManager.prestigeLevel > 0)
         {
             UpdateCirclePrice();
