@@ -33,7 +33,7 @@ public class PrestigeManager : MonoBehaviour
         }
         else
         {
-            //play sound
+            AudioManager.PlaySound("Not Enough");
         }
     }
     void IntialiseCost()

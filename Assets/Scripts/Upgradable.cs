@@ -39,7 +39,7 @@ public class Upgradable : MonoBehaviour
         }
         else
         {
-            //play sound
+            AudioManager.PlaySound("Not Enough");
         }
     }
     public void UpdatePriceUI(double price)

@@ -68,7 +68,7 @@ public class ItemPurchaseManager : MonoBehaviour
         }
         else
         {
-            //play sound
+            AudioManager.PlaySound("Not Enough");
         }
 
     }
