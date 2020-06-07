@@ -50,7 +50,6 @@ public class DemoParticleEmitterSwitcher : MonoBehaviour
 		}
 
 		if (updateEffectorsOnChange) {
-			CustomParticle.UpdateEffectorList ();
 		}
 	}
 }

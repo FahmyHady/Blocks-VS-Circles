@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3896260097653464306}
   - component: {fileID: 3896260097653464316}
   - component: {fileID: 3896260097653464317}
-  - component: {fileID: 3896260097605281942}
   - component: {fileID: 3896260097605281943}
   m_Layer: 8
   m_Name: Cube
@@ -122,21 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0f9bafe27e18a438f559be4fb95da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prestigeCubeSprites:
+  - {fileID: 21300000, guid: bb95e1faba346874f8964503814a87fe, type: 3}
+  - {fileID: 21300000, guid: d0ff9397b6b7f2845a22d5b1c10b9e5a, type: 3}
   tappedEffect: {fileID: 1518228667315550985}
---- !u!114 &3896260097605281942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3896260097653464305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6100451cd4cfd4fa0984e63a95758848, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particlePrefab: {fileID: 182198, guid: a90557f0c1fb37f498c813c9d8085b8c, type: 3}
-  maxParticleCount: 600
 --- !u!114 &3896260097605281943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +140,7 @@ MonoBehaviour:
   speedOffset: 0.003
   lengthMultiplier: 200
   numToSpawn: 20
-  wrapAround: 0
+  ignoreEffectors: 1
 --- !u!1001 &7652388570701284412
 PrefabInstance:
   m_ObjectHideFlags: 0

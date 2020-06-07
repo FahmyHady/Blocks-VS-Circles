@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerDataManager : MonoBehaviour
 {
     static double verticies;
+    static public int prestigeLevel;
     public static void AddVerticies(double countToAdd)
     {
         verticies += countToAdd;

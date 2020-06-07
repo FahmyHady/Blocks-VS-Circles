@@ -12,7 +12,6 @@ public class Upgradable : MonoBehaviour
     public double goldPerTap;
     public void OnEnable()
     {
-       // EventManager.StartListening("Data Loaded", CalculateValues);
         SaveLoadManager.AddAnUpgradable(this);
     }
     public void OnDisable()
@@ -25,6 +24,9 @@ public class Upgradable : MonoBehaviour
         goldPerTap = UpgradeManager.CalculateGoldPerTap(currentLevel);
         UpdatePriceUI(upgradeCost);
 
+    }
+    public virtual void PlayerPrestiged()
+    {
     }
     public void Upgrade()
     {

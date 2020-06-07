@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
+
 public class IdleGainManager : MonoBehaviour
 {
     static double totalGainPerSecond;
@@ -19,6 +21,11 @@ public class IdleGainManager : MonoBehaviour
     {
         TimeSpan timeSinceLastSession = DateTimeManager.INSTANCE.GetElapsedTime();
         gainSinceLastSession = timeSinceLastSession.TotalSeconds * totalGainPerSecond;
+        if (timeSinceLastSession == TimeSpan.Zero || gainSinceLastSession == 0)
+        {
+            EventManager.TriggerEvent("No Idle Gain");
+            return;
+        }
         EventManager.TriggerEvent("Idle Gain Verticies", AbbrevationUtility.AbbreviateNumber(gainSinceLastSession));
         EventManager.TriggerEvent("Idle Gain Time", timeSinceLastSession.Days + " Days " + timeSinceLastSession.Hours + " Hours " + timeSinceLastSession.Minutes + " Minutes");
     }

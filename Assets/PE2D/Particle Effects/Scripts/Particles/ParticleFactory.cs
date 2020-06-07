@@ -13,7 +13,7 @@ namespace PE2D
 		/// Particle prefab.
 		/// </summary>
 		public GameObject particlePrefab;
-
+		public ParticleEffector[] effectors;
 		/// <summary>
 		/// The max particle count. This number of particles is created at runtime and placed in a finite pool.
 		/// </summary>
@@ -57,7 +57,7 @@ namespace PE2D
 				_particleArray [i] = particle.GetComponent<CustomParticle> ();
 			}
 
-			CustomParticle.UpdateEffectorList ();
+			CustomParticle.UpdateEffectorList (effectors);
 		}
 
 		/// <summary>

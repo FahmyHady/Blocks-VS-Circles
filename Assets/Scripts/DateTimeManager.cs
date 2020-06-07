@@ -26,7 +26,7 @@ public class DateTimeManager : MonoBehaviour
         _currentDate = DateTime.Now;
 
         if (!long.TryParse(PlayerPrefs.GetString("LastPlayTime"), out long temp))
-            returnValue = TimeSpan.MinValue;
+            returnValue = TimeSpan.Zero;
 
         else
         {

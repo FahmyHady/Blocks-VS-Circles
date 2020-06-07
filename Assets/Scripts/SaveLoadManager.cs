@@ -4,11 +4,16 @@ using System.Collections.Generic;
 public class SaveLoadManager : MonoBehaviour
 {
     static List<Upgradable> upgradables = new List<Upgradable>();
+    static Tapper theTapper;
     public static void AddAnUpgradable(Upgradable item)
     {
         if (!upgradables.Contains(item))
         {
             upgradables.Add(item);
+        }
+        if (item is Tapper)
+        {
+            theTapper = item as Tapper;
         }
     }
     private void OnEnable()
@@ -31,6 +36,7 @@ public class SaveLoadManager : MonoBehaviour
     void Save()
     {
         PlayerPrefs.SetString("VerticiesBalance", PlayerDataManager.GetVerticies().ToString());
+        PlayerPrefs.SetInt("PrestigeLevel", PlayerDataManager.prestigeLevel);
         for (int i = 0; i < upgradables.Count; i++)
         {
             PlayerPrefs.SetInt("Upgradable" + i, upgradables[i].currentLevel); //first upgradable is always the tapper
@@ -42,6 +48,7 @@ public class SaveLoadManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("VerticiesBalance"))
         {
+            PlayerDataManager.prestigeLevel = PlayerPrefs.GetInt("PrestigeLevel");
             double verticies = 0;
             double.TryParse(PlayerPrefs.GetString("VerticiesBalance"), out verticies);
             PlayerDataManager.AddVerticies(verticies);
@@ -50,6 +57,10 @@ public class SaveLoadManager : MonoBehaviour
                 upgradables[i].currentLevel = PlayerPrefs.GetInt("Upgradable" + i, 0);
                 upgradables[i].CalculateValues();
             }
+        }
+        else
+        {
+            theTapper.Init();
         }
         IdleGainManager.CalculateIdleGainPerSecond(upgradables);
         EventManager.TriggerEvent("Data Loaded");

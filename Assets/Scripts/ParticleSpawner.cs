@@ -11,7 +11,7 @@ public class ParticleSpawner : MonoBehaviour
     public float speedOffset = .01f;
     public float lengthMultiplier = 40f;
     public int numToSpawn = 200;
-    public WrapAroundType wrapAround;
+    public bool ignoreEffectors;
 
     public void SpawnExplosion(Vector2 position)
     {
@@ -27,10 +27,11 @@ public class ParticleSpawner : MonoBehaviour
             var state = new ParticleBuilder()
             {
                 velocity = StaticExtensions.Random.RandomVector2(speed, speed),
-                wrapAroundType = wrapAround,
+                wrapAroundType = WrapAroundType.None,
                 lengthMultiplier = lengthMultiplier,
                 velocityDampModifier = 0.94f,
-                removeWhenAlphaReachesThreshold = true
+                removeWhenAlphaReachesThreshold = true,
+                ignoreEffectors = ignoreEffectors
             };
 
             var colour = Color.Lerp(colour1, colour2, Random.Range(0, 1));

@@ -16,11 +16,16 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        ReturnBulletAndGetVerticies();
+    }
 
+    private void ReturnBulletAndGetVerticies()
+    {
         PlayerDataManager.AddVerticies(myWorth);
         gameObject.SetActive(false);
         BulletPoolManager.ReturnABullet(this);
     }
+
     private void OnEnable()
     {
         rb.bodyType = RigidbodyType2D.Dynamic;

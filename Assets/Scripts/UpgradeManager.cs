@@ -14,8 +14,8 @@ public class UpgradeManager : MonoBehaviour
     float YupgradeCost;
     void SetEquations()
     {
-        CalculateGoldPerTap = (upgradeLevel) => XgoldPerTap * upgradeLevel * YgoldPerTap;
-        CalculateUpgradeCost = (upgradeLevel) => XupgradeCost * (Mathf.Pow(YupgradeCost, upgradeLevel));
+        CalculateGoldPerTap = (upgradeLevel) => XgoldPerTap * upgradeLevel * YgoldPerTap * Mathf.Pow(10, PlayerDataManager.prestigeLevel);
+        CalculateUpgradeCost = (upgradeLevel) => XupgradeCost * Mathf.Pow(YupgradeCost, upgradeLevel) * Mathf.Pow(10, PlayerDataManager.prestigeLevel);
     }
     void SetDefaultValues()
     {

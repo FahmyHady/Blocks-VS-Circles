@@ -2,24 +2,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 
 public class ItemPurchaseManager : MonoBehaviour
 {
     // static public int numberOfCirclesBought;
     List<Circle> availableCirclesToBuy = new List<Circle>();
-    double currentCircleCost = 100;
+    double currentCircleCost;
+    [SerializeField] Sprite[] circlesPrestigeSprites;
     private void OnEnable()
     {
         EventManager.StartListening("Data Loaded", PopulateCirclesList);
+        EventManager.StartListening("Prestiged", ResetCircles);
+        EventManager.StartListening("Prestige Process Over", AssignSprites);
     }
     private void OnDisable()
     {
         EventManager.StopListening("Data Loaded", PopulateCirclesList);
+        EventManager.StopListening("Prestiged", ResetCircles);
+        EventManager.StopListening("Prestige Process Over", AssignSprites);
+
     }
 
     private void PopulateCirclesList()
     {
+        currentCircleCost = Mathf.Pow(10, 1 + PlayerDataManager.prestigeLevel); //Intialize circle cost
+        if (PlayerDataManager.prestigeLevel > 0)
+        {
+            UpdateCirclePrice();
+        }
         availableCirclesToBuy.AddRange(FindObjectsOfType<Circle>());
+        AssignSprites();
         for (int i = 0; i < availableCirclesToBuy.Count; i++)
         {
             if (availableCirclesToBuy[i].currentLevel == 0)
@@ -37,6 +50,13 @@ public class ItemPurchaseManager : MonoBehaviour
         CheckIfThereAreMoreCirclesToBuy();
     }
 
+    private void AssignSprites()
+    {
+        for (int i = 0; i < availableCirclesToBuy.Count; i++)
+        {
+            availableCirclesToBuy[i].spriteRenderer.sprite = circlesPrestigeSprites[PlayerDataManager.prestigeLevel % circlesPrestigeSprites.Length];
+        }
+    }
 
     public void BuyCircle()
     {
@@ -64,7 +84,7 @@ public class ItemPurchaseManager : MonoBehaviour
     }
     void CheckIfThereAreMoreCirclesToBuy()
     {
-        if (availableCirclesToBuy.Count==0)
+        if (availableCirclesToBuy.Count == 0)
         {
             EventManager.TriggerEvent("Max Circles Bought");
         }
@@ -72,6 +92,16 @@ public class ItemPurchaseManager : MonoBehaviour
     void UpdateCirclePrice()
     {
         currentCircleCost *= 10;
+        EventManager.TriggerEvent("Circle Cost Updated", currentCircleCost);
+    }
+    void ResetCircles()
+    {
+        currentCircleCost = 100 * Mathf.Pow(10, PlayerDataManager.prestigeLevel); //Intialize circle cost
+        availableCirclesToBuy.AddRange(FindObjectsOfType<Circle>());
+        for (int i = 0; i < availableCirclesToBuy.Count; i++)
+        {
+            availableCirclesToBuy[i].PlayerPrestiged();
+        }
         EventManager.TriggerEvent("Circle Cost Updated", currentCircleCost);
     }
 }
