@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
 {
     static Dictionary<string, AudioClip> soundsDict = new Dictionary<string, AudioClip>();
     public Sounds[] mySounds;
-
+    static bool muteAudio;
     private void Start()
     {
         if (soundsDict.Count == 0)
@@ -24,8 +24,19 @@ public class AudioManager : MonoBehaviour
         }
 
     }
-    static public void PlaySound(string whatToPlay, Vector3 whereToPlay)
+    public void MuteAudio()
     {
-        AudioSource.PlayClipAtPoint(soundsDict[whatToPlay], whereToPlay);
+        muteAudio = true;
+    }
+    public void UnMuteAudio()
+    {
+        muteAudio = false;
+    }
+    static public void PlaySound(string whatToPlay)
+    {
+        if (!muteAudio)
+        {
+        AudioSource.PlayClipAtPoint(soundsDict[whatToPlay], Vector3.zero);
+        }
     }
 }

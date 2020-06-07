@@ -29,6 +29,7 @@ public class PrestigeManager : MonoBehaviour
             PlayerDataManager.prestigeLevel++;
             IntialiseCost();
             EventManager.TriggerEvent("Prestiged");
+            AudioManager.PlaySound("Prestiged");
         }
         else
         {
@@ -65,6 +66,8 @@ public class PrestigeManager : MonoBehaviour
             yield return null;
         }
         EventManager.TriggerEvent("Explode Circle");
+        Vibration.MediumVibrate();
+        AudioManager.PlaySound("Circles Exploded");
         yield return new WaitForSeconds(6);
         t = 0;
         currentScale = blackHole.transform.localScale;

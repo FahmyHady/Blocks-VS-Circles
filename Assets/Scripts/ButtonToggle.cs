@@ -7,22 +7,34 @@ using UnityEngine.UI;
 public class ButtonToggle : MonoBehaviour
 {
     Button myButton;
-    Animator myAnimator;
+    [SerializeField] Animator myAnimator;
     bool clicked;
+    bool deselected;
     [SerializeField] GameObject objectToToggle;
     private void Awake()
     {
+        if (!myAnimator)
+        {
+            myAnimator = GetComponent<Animator>();
+        }
         myButton = GetComponent<Button>();
-        myAnimator = GetComponent<Animator>();
         myButton.onClick.AddListener(OnClick);
     }
     public void OnClick()
     {
         if (!clicked)
         {
-            clicked = true;
-            EventSystem.current.SetSelectedGameObject(objectToToggle);
-            myAnimator.SetBool("ButtonAppear", true);
+            if (deselected)
+            {
+                deselected = false;
+            }
+            else
+            {
+                myButton.interactable = false;
+                clicked = true;
+                EventSystem.current.SetSelectedGameObject(objectToToggle);
+                myAnimator.SetBool("ButtonAppear", true);
+            }
         }
     }
     public void OnButtonDeselect()
@@ -31,6 +43,9 @@ public class ButtonToggle : MonoBehaviour
         {
             myAnimator.SetBool("ButtonAppear", false);
             clicked = false;
+            myButton.interactable = true;
+            deselected = true;
         }
     }
+
 }

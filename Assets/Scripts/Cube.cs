@@ -84,6 +84,7 @@ public class Cube : MonoBehaviour, IPointerClickHandler
         if (!scaling)
         {
             tappedEffect.Emit(1);
+            AudioManager.PlaySound("Cube Tap");
             EventManager.TriggerEvent("Tapped");
         }
     }
@@ -91,5 +92,6 @@ public class Cube : MonoBehaviour, IPointerClickHandler
     private void OnCollisionEnter2D(Collision2D collision)
     {
         myExplosionSpawner.SpawnExplosion(collision.GetContact(0).point);
+        AudioManager.PlaySound("Cube Hit");
     }
 }

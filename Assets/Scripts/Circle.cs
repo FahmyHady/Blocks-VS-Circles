@@ -102,7 +102,8 @@ public class Circle : Upgradable, IPointerClickHandler
         if (initialised)
         {
             t += Time.deltaTime;
-            if (transform.position.x != randomLocation.x)
+            Vector2 location = transform.position;
+            if (location != randomLocation)
             {
                 transform.position = Vector2.Lerp(currentLocation, randomLocation, t / wanderTime);
             }

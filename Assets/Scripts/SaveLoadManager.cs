@@ -24,7 +24,7 @@ public class SaveLoadManager : MonoBehaviour
     {
         EventManager.StopListening("Gameplay Scene Loaded", Load);
     }
-
+#if UNITY_EDITOR
     private void OnApplicationFocus(bool focus)
     {
         if (!focus)
@@ -33,6 +33,15 @@ public class SaveLoadManager : MonoBehaviour
         }
     }
 
+#else
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            Save();
+        }
+    }
+#endif
     void Save()
     {
         PlayerPrefs.SetString("VerticiesBalance", PlayerDataManager.GetVerticies().ToString());

@@ -21,7 +21,7 @@ public class IdleGainManager : MonoBehaviour
     {
         TimeSpan timeSinceLastSession = DateTimeManager.INSTANCE.GetElapsedTime();
         gainSinceLastSession = timeSinceLastSession.TotalSeconds * totalGainPerSecond;
-        if (timeSinceLastSession == TimeSpan.Zero || gainSinceLastSession == 0)
+        if (timeSinceLastSession.TotalMinutes < 1 || gainSinceLastSession == 0)
         {
             EventManager.TriggerEvent("No Idle Gain");
             return;
